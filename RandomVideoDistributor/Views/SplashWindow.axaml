@@ -5,6 +5,7 @@
         x:Class="RandomVideoDistributor.Views.SplashWindow"
         x:DataType="vm:SplashViewModel"
         Title="Random Video Distributor"
+        Icon="/Assets/RandomVideoDistributor.ico"
         Width="900"
         Height="506"
         MinWidth="900"
