@@ -1,0 +1,162 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:RandomVideoDistributor.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        d:DesignWidth="850"
+        d:DesignHeight="600"
+        MinWidth="700"
+        MinHeight="500"
+        WindowState="Maximized"
+        x:Class="RandomVideoDistributor.Views.MainWindow"
+        x:DataType="vm:MainViewModel"
+        Title="التوزيع العشوائي للفيدوهات"
+        Closing="MainWindow_Closing">
+
+    <Design.DataContext>
+        <vm:MainViewModel />
+    </Design.DataContext>
+
+    <Grid RowDefinitions="Auto,*,Auto"
+          Margin="24"
+          RowSpacing="20">
+
+        <!-- عنوان البرنامج وزر الإغلاق -->
+        <Grid Grid.Row="0"
+              ColumnDefinitions="*,Auto"
+              ColumnSpacing="20">
+
+            <StackPanel Grid.Column="0" Spacing="6">
+                <TextBlock Text="التوزيع العشوائي للفيدوهات"
+                           FontSize="26"
+                           FontWeight="Bold" />
+
+                <TextBlock Text="توزيع الفيديوهات عشوائيًا على مجلدات منظمة"
+                           FontSize="14"
+                           Opacity="0.7" />
+            </StackPanel>
+
+            <Button Grid.Column="1"
+                    Content="إغلاق"
+                    MinWidth="90"
+                    VerticalAlignment="Center"
+                    Click="CloseButton_Click" />
+
+        </Grid>
+
+        <!-- إعدادات التوزيع -->
+        <Border Grid.Row="1"
+                Padding="20"
+                CornerRadius="12"
+                BorderThickness="1"
+                BorderBrush="{DynamicResource ThemeBorderLowBrush}">
+
+            <StackPanel Spacing="18">
+
+                <TextBlock Text="إعدادات التوزيع"
+                           FontSize="20"
+                           FontWeight="SemiBold" />
+
+                <StackPanel Spacing="6">
+                    <TextBlock Text="مجلد الفيديوهات المصدر"
+                               FontWeight="Medium" />
+
+                    <Grid ColumnDefinitions="*,Auto"
+                          ColumnSpacing="10">
+
+                        <TextBox Grid.Column="0"
+                                 Text="{Binding SourceFolder}"
+                                 PlaceholderText="اختر المجلد الذي يحتوي على الفيديوهات..."
+                                 IsReadOnly="True" />
+
+                        <Button Grid.Column="1"
+                                Content="اختيار المجلد"
+                                Command="{Binding ChooseSourceFolderCommand}" />
+                    </Grid>
+                </StackPanel>
+
+                <StackPanel Spacing="6">
+                    <TextBlock Text="مكان حفظ المجلدات الناتجة"
+                               FontWeight="Medium" />
+
+                    <Grid ColumnDefinitions="*,Auto"
+                          ColumnSpacing="10">
+
+                        <TextBox Grid.Column="0"
+                                 Text="{Binding OutputFolder}"
+                                 PlaceholderText="اختر مكان حفظ النتائج..."
+                                 IsReadOnly="True" />
+
+                        <Button Grid.Column="1"
+                                Content="اختيار المكان"
+                                Command="{Binding ChooseOutputFolderCommand}" />
+                    </Grid>
+                </StackPanel>
+
+                <StackPanel Spacing="6">
+                    <TextBlock Text="عدد الفيديوهات في كل مجلد"
+                               FontWeight="Medium" />
+
+                    <NumericUpDown Minimum="1"
+                                   Maximum="100000"
+                                   Value="{Binding VideosPerFolder}"
+                                   Increment="1"
+                                   FormatString="0" />
+                </StackPanel>
+
+                <Separator />
+
+                <Grid ColumnDefinitions="*,*"
+                      ColumnSpacing="12">
+
+                    <Button Grid.Column="0"
+                            Content="فحص الفيديوهات"
+                            Command="{Binding ScanVideosCommand}"
+                            HorizontalContentAlignment="Center"
+                            Padding="12" />
+
+                    <Button Grid.Column="1"
+                            Content="بدء التوزيع"
+                            Command="{Binding DistributeVideosCommand}"
+                            HorizontalContentAlignment="Center"
+                            Padding="12" />
+                </Grid>
+
+                <Button Content="إدارة امتدادات الفيديو"
+                        HorizontalContentAlignment="Center"
+                        Padding="12"
+                        Click="OpenExtensionSettings_Click" />
+
+                <Border Padding="12"
+                        CornerRadius="8"
+                        Background="{DynamicResource ThemeControlLowBrush}">
+
+                    <StackPanel Spacing="6">
+
+                        <TextBlock Text="{Binding StatusMessage}"
+                                   Opacity="0.8"
+                                   TextWrapping="Wrap" />
+
+                        <TextBlock Text="{Binding VideoCount,
+                        StringFormat='عدد الفيديوهات: {0}'}" />
+
+                        <TextBlock Text="{Binding OutputFolderCount,
+                        StringFormat='عدد مجلدات الإخراج: {0}'}" />
+
+                    </StackPanel>
+                </Border>
+
+            </StackPanel>
+        </Border>
+
+        <!-- حقوق الملكية -->
+        <TextBlock Grid.Row="2"
+                   Text="© 2026 Mina Francis. All rights reserved."
+                   FontSize="11"
+                   Opacity="0.65"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center" />
+
+    </Grid>
+</Window>

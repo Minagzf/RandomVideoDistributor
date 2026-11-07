@@ -1,0 +1,83 @@
+
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="RandomVideoDistributor.Views.ExtensionSettingsWindow"
+        Title="إدارة امتدادات الفيديو"
+        Width="500"
+        Height="550"
+        MinWidth="400"
+        MinHeight="400"
+        WindowStartupLocation="CenterOwner">
+
+    <Grid RowDefinitions="Auto,*,Auto"
+          Margin="20"
+          RowSpacing="16">
+
+        <StackPanel Grid.Row="0" Spacing="6">
+            <TextBlock Text="إدارة امتدادات الفيديو"
+                       FontSize="22"
+                       FontWeight="Bold" />
+
+            <TextBlock Text="أضف امتدادات الفيديو أو احذفها من قائمة الفحص."
+                       TextWrapping="Wrap"
+                       Opacity="0.7" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Spacing="12">
+
+            <Grid ColumnDefinitions="*,Auto"
+                  ColumnSpacing="8">
+
+
+                <Grid ColumnDefinitions="*,Auto"
+                      ColumnSpacing="8">
+
+                    <TextBox x:Name="ExtensionInput"
+                             Grid.Column="0"
+                             PlaceholderText="مثال: .mp4 أو mp4" />
+
+                    <Button Grid.Column="1"
+                            Content="إضافة"
+                            MinWidth="85"
+                            Click="AddExtension_Click" />
+                </Grid>
+
+                <TextBlock x:Name="ExtensionStatus"
+                           TextWrapping="Wrap"
+                           Opacity="0.8" />
+
+            </Grid>
+
+            <TextBlock Text="الامتدادات المفعّلة"
+                       FontWeight="SemiBold" />
+
+            <ListBox x:Name="ExtensionsList"
+                     Height="300">
+            </ListBox>
+
+
+            <Button Content="حذف الامتداد المحدد"
+                    HorizontalAlignment="Stretch"
+                    Click="RemoveExtension_Click" />
+
+        </StackPanel>
+
+ 
+<Grid Grid.Row="2"
+      ColumnDefinitions="*,*"
+      ColumnSpacing="10">
+
+    <Button Grid.Column="0"
+            Content="إلغاء"
+            HorizontalContentAlignment="Center"
+            Click="Cancel_Click" />
+
+    <Button Grid.Column="1"
+            Content="حفظ"
+            HorizontalContentAlignment="Center"
+            Click="Save_Click" />
+</Grid>
+
+
+    </Grid>
+</Window>

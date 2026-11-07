@@ -1,0 +1,218 @@
+
+<Window
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="using:RandomVideoDistributor.ViewModels"
+    xmlns:model="using:RandomVideoDistributor.Models"
+    x:Class="RandomVideoDistributor.Views.DistributionReportWindow"
+    x:DataType="vm:DistributionReportViewModel"
+    Title="تقرير توزيع الفيديوهات"
+    Width="1100"
+    Height="700"
+    MinWidth="800"
+    MinHeight="500"
+    WindowStartupLocation="CenterOwner">
+
+    <Grid RowDefinitions="Auto,*,Auto" Margin="20">
+
+        <!-- ملخص العملية -->
+        <StackPanel Grid.Row="0" Spacing="15">
+
+            <TextBlock
+                Text="تقرير عملية توزيع الفيديوهات"
+                FontSize="24"
+                FontWeight="Bold"/>
+
+            <Grid ColumnDefinitions="*,*,*">
+
+                <StackPanel Grid.Column="0" Spacing="5">
+                    <TextBlock Text="إجمالي الفيديوهات"/>
+                    <TextBlock
+                        Text="{Binding Result.TotalVideos}"
+                        FontSize="20"
+                        FontWeight="Bold"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Spacing="5">
+                    <TextBlock Text="نسخ ناجح"/>
+                    <TextBlock
+                        Text="{Binding Result.SuccessfulCopies}"
+                        FontSize="20"
+                        FontWeight="Bold"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2" Spacing="5">
+                    <TextBlock Text="نسخ فاشل"/>
+                    <TextBlock
+                        Text="{Binding Result.FailedCopies}"
+                        FontSize="20"
+                        FontWeight="Bold"/>
+                </StackPanel>
+
+            </Grid>
+
+            <TextBlock
+                Text="تفاصيل الملفات"
+                FontSize="18"
+                FontWeight="Bold"
+                Margin="0,5,0,0"/>
+
+        </StackPanel>
+
+        <!-- جدول تفاصيل الملفات -->
+        <ScrollViewer
+            Grid.Row="1"
+            HorizontalScrollBarVisibility="Auto"
+            VerticalScrollBarVisibility="Auto">
+
+            <StackPanel MinWidth="1240" Spacing="0">
+
+                <!-- عناوين الأعمدة -->
+                <Border
+                    Background="#334155"
+                    Padding="8">
+
+                    <Grid ColumnDefinitions="180,260,180,260,100,260">
+
+                        <TextBlock Grid.Column="0"
+                                   Text="الاسم الأصلي"
+                                   Foreground="White"
+                                   FontWeight="Bold"/>
+
+                        <TextBlock Grid.Column="1"
+                                   Text="المسار الأصلي"
+                                   Foreground="White"
+                                   FontWeight="Bold"/>
+
+                        <TextBlock Grid.Column="2"
+                                   Text="الاسم الجديد"
+                                   Foreground="White"
+                                   FontWeight="Bold"/>
+
+                        <TextBlock Grid.Column="3"
+                                   Text="مسار الوجهة"
+                                   Foreground="White"
+                                   FontWeight="Bold"/>
+
+                        <TextBlock Grid.Column="4"
+                                   Text="نجاح؟"
+                                   Foreground="White"
+                                   FontWeight="Bold"/>
+
+                        <TextBlock Grid.Column="5"
+                                   Text="سبب الفشل"
+                                   Foreground="White"
+                                   FontWeight="Bold"/>
+
+                    </Grid>
+                </Border>
+
+                <!-- صفوف البيانات -->
+                <ItemsControl ItemsSource="{Binding Result.Records}">
+
+                    <ItemsControl.ItemTemplate>
+
+                        <DataTemplate x:DataType="model:VideoCopyRecord">
+
+                            <Border
+                                BorderBrush="#64748B"
+                                BorderThickness="0,0,0,1"
+                                Padding="8">
+
+                                <Grid ColumnDefinitions="180,260,180,260,100,260">
+
+                                    <TextBlock Grid.Column="0"
+                                               Text="{Binding OriginalFileName}"
+                                               TextWrapping="Wrap"/>
+
+                                    <TextBlock Grid.Column="1"
+                                               Text="{Binding OriginalPath}"
+                                               TextWrapping="Wrap"/>
+
+                                    <TextBlock Grid.Column="2"
+                                               Text="{Binding NewFileName}"
+                                               TextWrapping="Wrap"/>
+
+                                    <TextBlock Grid.Column="3"
+                                               Text="{Binding DestinationPath}"
+                                               TextWrapping="Wrap"/>
+
+                                    <Border
+                                        Grid.Column="4"
+                                        HorizontalAlignment="Center"
+                                        Padding="8,4"
+                                        CornerRadius="5"
+                                        Background="{Binding StatusColor}">
+
+                                        <TextBlock
+                                            Text="{Binding StatusText}"
+                                            Foreground="White"
+                                            FontWeight="Bold"/>
+
+                                    </Border>
+
+
+                                    <TextBlock Grid.Column="5"
+                                               Text="{Binding ErrorMessage}"
+                                               TextWrapping="Wrap"/>
+
+                                </Grid>
+
+                            </Border>
+
+                        </DataTemplate>
+
+                    </ItemsControl.ItemTemplate>
+
+                </ItemsControl>
+
+            </StackPanel>
+
+        </ScrollViewer>
+
+
+<!-- الرسائل وأزرار التحكم -->
+<StackPanel
+    Grid.Row="2"
+    Spacing="12"
+    Margin="0,15,0,0">
+
+    <!-- رسالة التنبيه -->
+    <Border
+        Background="#FFF3CD"
+        CornerRadius="5"
+        Padding="10">
+
+        <TextBlock
+            Text="{Binding Message}"
+            Foreground="#856404"
+            TextWrapping="Wrap"/>
+
+    </Border>
+
+    <!-- أزرار التحكم -->
+    <StackPanel
+        Orientation="Horizontal"
+        HorizontalAlignment="Right"
+        Spacing="10">
+
+        <Button
+            Content="فتح تقرير CSV في Excel"
+            Click="OpenCsvReport_Click"/>
+
+        <Button
+            Content="فتح مجلد النتائج"
+            Click="OpenOutputFolder_Click"/>
+
+        <Button
+            Content="إغلاق"
+            Click="CloseReport_Click"/>
+
+    </StackPanel>
+
+</StackPanel>
+
+
+    </Grid>
+
+</Window>

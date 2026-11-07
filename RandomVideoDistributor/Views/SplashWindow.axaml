@@ -1,0 +1,96 @@
+
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:RandomVideoDistributor.ViewModels"
+        x:Class="RandomVideoDistributor.Views.SplashWindow"
+        x:DataType="vm:SplashViewModel"
+        Title="Random Video Distributor"
+        Width="900"
+        Height="506"
+        MinWidth="900"
+        MinHeight="506"
+        MaxWidth="900"
+        MaxHeight="506"
+        WindowStartupLocation="CenterScreen"
+        WindowDecorations="None"
+        CanResize="False"
+        ShowInTaskbar="False"
+        TransparencyLevelHint="Transparent"
+        Background="Transparent">
+
+    <Border CornerRadius="12"
+            ClipToBounds="True"
+            Background="#080D25">
+
+        <Grid>
+
+            <!-- Background Image -->
+            <Image Source="avares://RandomVideoDistributor/Assets/Images/splash-background.png"
+                   Stretch="UniformToFill"/>
+
+            <!-- Dynamic Elements -->
+            <StackPanel VerticalAlignment="Bottom"
+                        HorizontalAlignment="Stretch"
+                        Margin="75,0,75,18"
+                        Spacing="7">
+
+                <!-- Progress Bar -->
+
+                <!-- Neon Progress Bar -->
+                <Border Height="26"
+                        Padding="3"
+                        CornerRadius="13"
+                        Background="#101A35"
+                        BorderBrush="#65DFFF"
+                        BorderThickness="1"
+                        BoxShadow="0 0 12 2 #8040DFFF, 0 0 24 3 #503B5BFF">
+
+                    <ProgressBar Minimum="0"
+                                 Maximum="100"
+                                 Value="{Binding Progress}"
+                                 Height="20"
+                                 CornerRadius="13"
+                                 VerticalAlignment="Center"
+                                 Background="Transparent"
+                                 BorderThickness="1"
+                                 ShowProgressText="False">
+
+                        <ProgressBar.Foreground>
+                            <LinearGradientBrush StartPoint="0%,50%"
+                                                 EndPoint="100%,50%">
+                                <GradientStop Color="#00F5FF" Offset="0"/>
+                                <GradientStop Color="#168BFF" Offset="0.50"/>
+                                <GradientStop Color="#8A42FF" Offset="1"/>
+                            </LinearGradientBrush>
+                        </ProgressBar.Foreground>
+
+                        <ProgressBar.Styles>
+                            <Style Selector="ProgressBar /template/ Border#PART_Indicator">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </ProgressBar.Styles>
+
+                    </ProgressBar>
+                </Border>
+
+
+                <!-- Status Message -->
+                <TextBlock Text="{Binding StatusMessage}"
+                           HorizontalAlignment="Center"
+                           Foreground="White"
+                           FontSize="12"
+                           FontWeight="Medium"/>
+
+                <!-- Copyright -->
+                <TextBlock Text="© 2026 Mina Francis. All rights reserved."
+                           HorizontalAlignment="Center"
+                           Foreground="#AAB4D0"
+                           FontSize="10"
+                           Margin="0,3,0,0"/>
+
+            </StackPanel>
+
+        </Grid>
+
+    </Border>
+</Window>

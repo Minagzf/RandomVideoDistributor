@@ -1,0 +1,140 @@
+<Window
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="using:RandomVideoDistributor.ViewModels"
+    x:Class="RandomVideoDistributor.Views.ProgressWindow"
+    x:DataType="vm:ProgressViewModel"
+    Title="متابعة عملية النسخ"
+    Width="650"
+    Height="540"
+    MinWidth="550"
+    MinHeight="480"
+    WindowStartupLocation="CenterOwner"
+    CanResize="False">
+
+    <Grid RowDefinitions="Auto,Auto,*,Auto"
+          Margin="20"
+          RowSpacing="15">
+
+        <TextBlock
+            Grid.Row="0"
+            Text="جارٍ نسخ الفيديوهات..."
+            FontSize="22"
+            FontWeight="Bold"
+            HorizontalAlignment="Center"/>
+
+        <StackPanel Grid.Row="1" Spacing="15">
+
+            <!-- Current File Progress -->
+            <StackPanel Spacing="7">
+                <Grid ColumnDefinitions="*,Auto">
+                    <TextBlock Text="تقدم الملف الحالي"
+                               FontWeight="Bold"/>
+
+                    <TextBlock Grid.Column="1"
+                               Text="{Binding CurrentFileProgress, StringFormat='{}{0:F1}%'}"/>
+                </Grid>
+
+                <ProgressBar
+                    Minimum="0"
+                    Maximum="100"
+                    Value="{Binding CurrentFileProgress}"
+                    Height="14"/>
+            </StackPanel>
+
+            <!-- Overall Progress -->
+            <StackPanel Spacing="7">
+                <Grid ColumnDefinitions="*,Auto">
+                    <TextBlock Text="تقدم العملية بالكامل"
+                               FontWeight="Bold"/>
+
+                    <TextBlock Grid.Column="1"
+                               Text="{Binding OverallProgress, StringFormat='{}{0:F1}%'}"/>
+                </Grid>
+
+                <ProgressBar
+                    Minimum="0"
+                    Maximum="100"
+                    Value="{Binding OverallProgress}"
+                    Height="14"/>
+
+                <TextBlock
+                    Text="{Binding ProcessedVideos, StringFormat='تمت معالجة {0} فيديو'}"
+                    HorizontalAlignment="Center"/>
+            </StackPanel>
+
+        </StackPanel>
+
+<Border Grid.Row="2"
+        BorderThickness="1"
+        BorderBrush="Gray"
+        Padding="15"
+        CornerRadius="6">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+        <StackPanel Spacing="10">
+
+            <TextBlock Text="معلومات الفيديو الحالي"
+                       FontWeight="Bold"
+                       FontSize="16"/>
+
+            <TextBlock Text="اسم الملف الأصلي:"
+                       FontWeight="Bold"/>
+            <TextBlock Text="{Binding CurrentFileName}"
+                       TextWrapping="Wrap"/>
+
+            <TextBlock Text="المسار الأصلي:"
+                       FontWeight="Bold"/>
+            <TextBlock Text="{Binding OriginalPath}"
+                       TextWrapping="Wrap"/>
+
+            <TextBlock Text="الاسم الجديد:"
+                       FontWeight="Bold"/>
+            <TextBlock Text="{Binding NewFileName}"
+                       TextWrapping="Wrap"/>
+
+            <TextBlock Text="مسار الوجهة:"
+                       FontWeight="Bold"/>
+            <TextBlock Text="{Binding DestinationPath}"
+                       TextWrapping="Wrap"/>
+
+            <Separator Margin="0,8"/>
+
+            <TextBlock Text="آخر عملية نسخ فاشلة"
+                       FontWeight="Bold"
+                       Foreground="#B45309"
+                       FontSize="15"/>
+
+            <TextBlock Text="{Binding LastFailedFileName}"
+                       FontWeight="Bold"
+                       TextWrapping="Wrap"/>
+
+            <TextBlock Text="{Binding LastFailureMessage}"
+                       TextWrapping="Wrap"/>
+
+        </StackPanel>
+
+    </ScrollViewer>
+
+</Border>
+
+
+        <Grid Grid.Row="3" ColumnDefinitions="*,*,*">
+
+            <TextBlock
+                Text="{Binding SuccessfulCopies, StringFormat='ناجح: {0}'}"
+                HorizontalAlignment="Center"/>
+
+            <TextBlock Grid.Column="1"
+                       Text="{Binding FailedCopies, StringFormat='فاشل: {0}'}"
+                       HorizontalAlignment="Center"/>
+
+            <TextBlock Grid.Column="2"
+                       Text="{Binding TotalVideos, StringFormat='الإجمالي: {0}'}"
+                       HorizontalAlignment="Center"/>
+
+        </Grid>
+
+    </Grid>
+</Window>
