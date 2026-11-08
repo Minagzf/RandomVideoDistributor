@@ -1,0 +1,105 @@
+
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="RandomVideoDistributor.Views.AboutWindow"
+        Title="About Random Video Distributor"
+        Icon="/Assets/RandomVideoDistributor.ico"
+        Width="520"
+        Height="390"
+        MinWidth="520"
+        MinHeight="390"
+        MaxWidth="520"
+        MaxHeight="390"
+        WindowStartupLocation="CenterOwner"
+        CanResize="False"
+        Background="#080D25">
+
+    <Border Padding="30"
+            CornerRadius="12"
+            BorderBrush="#34446B"
+            BorderThickness="1">
+
+        <Grid RowDefinitions="Auto,Auto,*,Auto">
+
+            <!-- Application Name -->
+            <StackPanel Grid.Row="0"
+                        HorizontalAlignment="Center"
+                        Spacing="10">
+
+                <Border Width="76"
+                        Height="76"
+                        CornerRadius="18"
+                        Background="#101A35"
+                        BorderBrush="#65DFFF"
+                        BorderThickness="1"
+                        BoxShadow="0 0 18 2 #6040DFFF">
+
+                    <Image Source="/Assets/RandomVideoDistributor.ico"
+                           Width="56"
+                           Height="56"
+                           Stretch="Uniform"/>
+                </Border>
+
+                <TextBlock Text="Random Video Distributor"
+                           FontSize="23"
+                           FontWeight="Bold"
+                           Foreground="White"
+                           HorizontalAlignment="Center"/>
+
+                <TextBlock Text="Smart Random Video Organization"
+                           FontSize="12"
+                           Foreground="#65DFFF"
+                           HorizontalAlignment="Center"/>
+            </StackPanel>
+
+            <Border Grid.Row="1"
+                    Height="1"
+                    Margin="0,22,0,18"
+                    Background="#34446B"/>
+
+            <!-- Information -->
+            <StackPanel Grid.Row="2"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Spacing="12">
+
+                <TextBlock Text="Developed by"
+                           Foreground="#AAB4D0"
+                           FontSize="13"
+                           HorizontalAlignment="Center"/>
+
+                <TextBlock Text="Mina Francis"
+                           Foreground="White"
+                           FontSize="19"
+                           FontWeight="SemiBold"
+                           HorizontalAlignment="Center"/>
+
+                <TextBlock Text="Version 1.0.0"
+                           Foreground="#65DFFF"
+                           FontSize="12"
+                           HorizontalAlignment="Center"/>
+
+            </StackPanel>
+
+            <!-- Copyright -->
+            <StackPanel Grid.Row="3"
+                        Spacing="12">
+
+                <Border Height="1"
+                        Background="#34446B"/>
+
+                <TextBlock Text="© 2026 Mina Francis. All rights reserved."
+                           Foreground="#AAB4D0"
+                           FontSize="10"
+                           HorizontalAlignment="Center"/>
+
+                <Button Content="Close"
+                        Width="110"
+                        HorizontalAlignment="Center"
+                        Click="CloseButton_Click"/>
+
+            </StackPanel>
+
+        </Grid>
+    </Border>
+</Window>

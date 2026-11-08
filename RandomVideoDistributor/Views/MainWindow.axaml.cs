@@ -63,4 +63,12 @@ public partial class MainWindow : Window
 
         await dialog.ShowDialog(this);
     }
+    private async void AboutButton_Click(
+    object? sender,
+    RoutedEventArgs e)
+    {
+        var dialog = new AboutWindow();
+
+        await dialog.ShowDialog(this);
+    }
 }

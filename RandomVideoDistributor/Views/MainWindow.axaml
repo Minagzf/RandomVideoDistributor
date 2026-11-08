@@ -24,9 +24,9 @@
           RowSpacing="20">
 
         <!-- عنوان البرنامج وزر الإغلاق -->
-        <Grid Grid.Row="0"
-              ColumnDefinitions="*,Auto"
-              ColumnSpacing="20">
+       <Grid Grid.Row="0"
+      ColumnDefinitions="*,Auto,Auto"
+      ColumnSpacing="10">
 
             <StackPanel Grid.Column="0" Spacing="6">
                 <TextBlock Text="التوزيع العشوائي للفيدوهات"
@@ -38,11 +38,17 @@
                            Opacity="0.7" />
             </StackPanel>
 
-            <Button Grid.Column="1"
-                    Content="إغلاق"
-                    MinWidth="90"
-                    VerticalAlignment="Center"
-                    Click="CloseButton_Click" />
+           <Button Grid.Column="1"
+        Content="About"
+        MinWidth="90"
+        VerticalAlignment="Center"
+        Click="AboutButton_Click" />
+
+<Button Grid.Column="2"
+        Content="إغلاق"
+        MinWidth="90"
+        VerticalAlignment="Center"
+        Click="CloseButton_Click" />
 
         </Grid>
 
